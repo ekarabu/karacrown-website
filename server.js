@@ -7,29 +7,23 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
-// Your reCAPTCHA keys
-const SITE_KEY = '6LcnQ4EqAAAAAPpzeyTqqPO1QQE13so0Hzs7Dpty';
-const API_KEY = process.env.API_KEY; // Load API key from environment variables
+// Use the correct secret key from your environment variables
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
 
 app.post('/verify-recaptcha', async (req, res) => {
-    const { token, action } = req.body;
+    const { token } = req.body;
 
     try {
-        const requestBody = {
-            event: {
-                token: token,
-                expectedAction: action,
-                siteKey: SITE_KEY,
+        // Verify the reCAPTCHA token with Google's API
+        const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify`, null, {
+            params: {
+                secret: RECAPTCHA_SECRET_KEY,
+                response: token
             }
-        };
+        });
 
-        const response = await axios.post(
-            `https://recaptchaenterprise.googleapis.com/v1/projects/karacrown-websit-1731811743111/assessments?key=${API_KEY}`,
-            requestBody
-        );
-
-        if (response.data.tokenProperties && response.data.tokenProperties.valid) {
-            res.status(200).send({ success: true, score: response.data.riskAnalysis.score });
+        if (response.data.success) {
+            res.status(200).send({ success: true, score: response.data.score });
         } else {
             res.status(400).send({ success: false, error: 'Invalid token' });
         }
