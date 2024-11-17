@@ -21,14 +21,15 @@ header {
 }
 
 .logo {
-    width: 225px; /* Increased size of the logo to 1.5 times (150px * 1.5) */
+    width: 225px; /* Logo size increased to 1.5 times */
     height: auto;
     margin-right: 20px; /* Space between logo and header text */
 }
 
 .header-text {
-    text-align: center; /* Center the text */
+    text-align: left; /* Align text to the left */
     flex-grow: 1; /* Allow text to take up the remaining space */
+    margin-left: -40px; /* Shift text slightly to the left */
 }
 
 .header-text h1 {
