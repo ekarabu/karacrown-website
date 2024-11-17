@@ -9,10 +9,14 @@ const PORT = process.env.PORT || 3000;
 
 // Enable CORS for your frontend domain or temporarily allow all origins for testing
 app.use(cors({
-    origin: '*', // Temporarily allow all origins for testing. Change to 'https://www.karacrown.com' in production
+    origin: 'https://www.karacrown.com', // Allow only your frontend in production
     methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type']
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true // If using cookies/auth tokens
 }));
+
+// Handle preflight requests
+app.options('*', cors());
 
 app.use(bodyParser.json());
 
