@@ -41,35 +41,25 @@
             event.preventDefault();
             console.log("Form submitted, executing reCAPTCHA...");
 
-            // Execute reCAPTCHA and get the token
             grecaptcha.enterprise.ready(async function() {
                 console.log("reCAPTCHA is ready, executing...");
                 try {
-                    const token = await grecaptcha.enterprise.execute('6LdbcIEqAAAAAF7YusyKPib88RSCFccVZIRqhM9y', { action: 'submit' });
+                    const token = await grecaptcha.enterprise.execute('YOUR_SITE_KEY', { action: 'submit' });
                     console.log("reCAPTCHA token generated:", token);
 
-                    // Send the token and form data to your Heroku backend for verification
                     const response = await fetch('https://karacrown-backend-new.herokuapp.com/verify-recaptcha', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            token: token,
-                            name: document.getElementById('name').value,
-                            email: document.getElementById('email').value,
-                            message: document.getElementById('message').value
-                        })
+                        body: JSON.stringify({ token: token, action: 'submit' })
                     });
 
-                    console.log("Request sent to backend...");
-
-                    // Process the backend response
                     const result = await response.json();
                     console.log("Backend response:", result);
 
                     if (result.success) {
                         document.getElementById('status-message').innerText = "Your message has been sent successfully!";
                     } else {
-                        document.getElementById('status-message').innerText = "Failed to verify reCAPTCHA or send email. Please try again.";
+                        document.getElementById('status-message').innerText = "Failed to verify reCAPTCHA. Please try again.";
                     }
                 } catch (error) {
                     console.error("Error during form submission:", error);
