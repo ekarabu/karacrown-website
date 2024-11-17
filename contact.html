@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - KaraCrown LLC</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google reCAPTCHA Script -->
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcnQ4EqAAAAAPpzeyTqqPO1QQE13so0Hzs7Dpty"></script>
 </head>
 <body>
     <header>
@@ -13,15 +15,13 @@
     </header>
     <nav>
         <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="market.html">Market Insights</a>
-        <a href="portfolio.html">Portfolio</a>
+        <a href="rentals.html">Available Rentals</a>
         <a href="contact.html">Contact</a>
     </nav>
     <div class="container">
         <h2>Get in Touch</h2>
         <p>We’d love to hear from you! Reach out with any questions or investment opportunities.</p>
-        <form>
+        <form id="contact-form">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br><br>
             <label for="email">Email:</label>
@@ -30,9 +30,37 @@
             <textarea id="message" name="message" rows="4" required></textarea><br><br>
             <input type="submit" value="Send">
         </form>
+        <p id="status-message"></p>
     </div>
     <footer>
         <p>© 2024 KaraCrown LLC. All rights reserved.</p>
     </footer>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Execute reCAPTCHA and get the token
+            grecaptcha.enterprise.ready(async function() {
+                const token = await grecaptcha.enterprise.execute('6LcnQ4EqAAAAAPpzeyTqqPO1QQE13so0Hzs7Dpty', { action: 'submit' });
+
+                // Send the token to your Heroku backend for verification
+                const response = await fetch('https://karacrown-backend-new.herokuapp.com/verify-recaptcha', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: token, action: 'submit' })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Show success message
+                    document.getElementById('status-message').innerText = "Your message has been sent successfully!";
+                } else {
+                    // Show error message
+                    document.getElementById('status-message').innerText = "Failed to verify reCAPTCHA. Please try again.";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
