@@ -8,27 +8,32 @@ body {
 }
 
 header {
-    background: linear-gradient(135deg, #002b55, #00509e); /* Gradient transition from navy to soft blue */
+    background: linear-gradient(135deg, #0c7e8d, #e8fffa); /* Gradient transition from navy to soft blue */
     color: #fff;
     padding: 20px;
 }
 
 .header-container {
     display: flex;
-    align-items: center; /* Align items vertically */
-    justify-content: center; /* Center the logo and text horizontally */
-    padding: 0 20px;
-    position: relative;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .logo {
-    width: 225px; /* Increased size of the logo to 1.5 times */
-    height: auto;
-    position: absolute;
-    left: 20px; /* Position the logo on the left */
+    /* height: %; Keep aspect ratio */
+    display: flex;
+    align-items: center; /* Align logo vertically */
+}
+
+.logo2 {
+    flex: 1;
+    height: 16vw;
+    width: 16vw;
 }
 
 .header-text {
+    flex: 2;
     text-align: center; /* Center the text */
 }
 
