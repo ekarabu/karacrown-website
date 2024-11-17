@@ -10,7 +10,7 @@ body {
 header {
     background: linear-gradient(135deg, #0c7e8d, #e8fffa); /* Gradient transition from navy to soft blue */
     color: #fff;
-    padding: 20px;
+    padding: 10px;
 }
 
 .header-container {
