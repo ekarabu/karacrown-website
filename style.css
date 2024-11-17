@@ -15,30 +15,30 @@ header {
 
 .header-container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: center; /* Align items vertically */
+    justify-content: center; /* Center the logo and text horizontally */
     padding: 0 20px;
+    position: relative;
 }
 
 .logo {
-    width: 225px; 
+    width: 225px; /* Increased size of the logo to 1.5 times */
     height: auto;
-    margin-right: 20px;
+    position: absolute;
+    left: 20px; /* Position the logo on the left */
 }
 
 .header-text {
-    text-align: left;
-    flex-grow: 1;
-    margin-left: -40px;
+    text-align: center; /* Center the text */
 }
 
 .header-text h1 {
-    font-size: 3.75em;
+    font-size: 3.75em; /* Font size remains the same */
     margin: 0;
 }
 
 .header-text p {
-    font-size: 2.25em;
+    font-size: 2.25em; /* Font size remains the same */
     margin: 5px 0 15px;
 }
 
@@ -66,13 +66,13 @@ nav a:hover {
 }
 
 .hero h2 {
-    font-size: 3em;
+    font-size: 3em; /* Font size remains the same */
     color: #00509e;
     margin: 0;
 }
 
 .hero p {
-    font-size: 1.5em;
+    font-size: 1.5em; /* Font size remains the same */
     margin: 10px 0 20px;
 }
 
