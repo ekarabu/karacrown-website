@@ -19,7 +19,7 @@
     <div class="container">
         <h2>Get in Touch</h2>
         <p>We’d love to hear from you! Reach out with any questions or investment opportunities.</p>
-        <form id="contact-form" onsubmit="showMessage(event)">
+        <form id="contact-form" action="mailto:info@karacrown.com" method="post" enctype="text/plain">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br><br>
             <label for="email">Email:</label>
@@ -28,17 +28,10 @@
             <textarea id="message" name="message" rows="4" required></textarea><br><br>
             <input type="submit" value="Send">
         </form>
-        <p id="status-message" style="display: none; color: green;">Your message has been sent successfully!</p>
+        <p id="status-message" style="color: green;"></p>
     </div>
     <footer>
         <p>© 2024 KaraCrown LLC. All rights reserved.</p>
     </footer>
-    <script>
-        // Function to show the success message
-        function showMessage(event) {
-            event.preventDefault(); // Prevent form submission
-            document.getElementById('status-message').style.display = 'block'; // Show success message
-        }
-    </script>
 </body>
 </html>
