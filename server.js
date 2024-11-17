@@ -3,45 +3,49 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const sendgrid = require('@sendgrid/mail');
-const cors = require('cors');
+const cors = require('cors'); // Import cors
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Enable CORS with improved configuration
+// Enable CORS for your frontend domain or temporarily allow all origins for testing
 app.use(cors({
-    origin: 'https://www.karacrown.com', // Replace with your actual frontend domain
+    origin: '*', // Temporarily allow all origins for testing. Change to 'https://www.karacrown.com' in production
     methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
-    credentials: true // Allow credentials if needed
+    allowedHeaders: ['Content-Type']
 }));
 
 app.use(bodyParser.json());
 
-// Debugging: Log environment variables to ensure they are set
-console.log("RECAPTCHA_SECRET_KEY:", process.env.RECAPTCHA_SECRET_KEY ? "Loaded" : "Not Loaded");
-console.log("SENDGRID_API_KEY:", process.env.SENDGRID_API_KEY ? "Loaded" : "Not Loaded");
-
-// Set up SendGrid API key
-sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
+// Load API keys and log for debugging
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
+const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+if (RECAPTCHA_SECRET_KEY) {
+    console.log("RECAPTCHA_SECRET_KEY: Loaded");
+} else {
+    console.error("RECAPTCHA_SECRET_KEY is missing!");
+}
+if (SENDGRID_API_KEY) {
+    console.log("SENDGRID_API_KEY: Loaded");
+    sendgrid.setApiKey(SENDGRID_API_KEY);
+} else {
+    console.error("SENDGRID_API_KEY is missing!");
+}
 
 app.post('/verify-recaptcha', async (req, res) => {
     const { token, name, email, message } = req.body;
 
     try {
-        // Debugging: Log incoming request data
-        console.log("Received request:", { token, name, email, message });
-
         // Verify the reCAPTCHA token with Google's API
-        const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify`, null, {
+        const response = await axios.post('https://www.google.com/recaptcha/api/siteverify', null, {
             params: {
-                secret: process.env.RECAPTCHA_SECRET_KEY,
+                secret: RECAPTCHA_SECRET_KEY,
                 response: token
             }
         });
 
-        console.log("reCAPTCHA verification response:", response.data);
-
         if (response.data.success) {
+            console.log("reCAPTCHA verification successful");
+
             // Send an email using SendGrid
             const msg = {
                 to: 'karacrownpersonal@gmail.com',
@@ -50,13 +54,11 @@ app.post('/verify-recaptcha', async (req, res) => {
                 text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
             };
 
-            // Debugging: Log the email message
-            console.log("Sending email with message:", msg);
-
             await sendgrid.send(msg);
+            console.log("Email sent successfully");
             res.status(200).send({ success: true, message: 'Email sent successfully!' });
         } else {
-            console.error("reCAPTCHA verification failed:", response.data['error-codes']);
+            console.error("Invalid reCAPTCHA token", response.data);
             res.status(400).send({ success: false, error: 'Invalid reCAPTCHA token' });
         }
     } catch (error) {
