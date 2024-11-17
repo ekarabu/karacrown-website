@@ -21,7 +21,7 @@ header {
 }
 
 .logo {
-    width: 100px; /* Adjust to maintain proportion */
+    width: 150px; /* Increased size of the logo */
     height: auto;
     margin-right: 20px; /* Space between logo and header text */
 }
@@ -32,12 +32,12 @@ header {
 }
 
 .header-text h1 {
-    font-size: 2.5em; /* Increase font size */
+    font-size: 3.75em; /* Increased by 50% from 2.5em */
     margin: 0;
 }
 
 .header-text p {
-    font-size: 1.5em; /* Increase font size */
+    font-size: 2.25em; /* Increased by 50% from 1.5em */
     margin: 5px 0 15px;
 }
 
@@ -65,13 +65,13 @@ nav a:hover {
 }
 
 .hero h2 {
-    font-size: 3em; /* Increase font size */
+    font-size: 3em; /* Kept the same */
     color: #00509e;
     margin: 0;
 }
 
 .hero p {
-    font-size: 1.5em; /* Increase font size */
+    font-size: 1.5em; /* Kept the same */
     margin: 10px 0 20px;
 }
 
