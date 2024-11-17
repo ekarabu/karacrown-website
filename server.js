@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Enable CORS for your frontend domain
-app.use(cors({ origin: 'https://www.karacrown.com' }));
+app.use(cors({ origin: 'https://www.karacrown.com', methods: ['POST'] }));
 
 app.use(bodyParser.json());
 
@@ -43,6 +43,7 @@ app.post('/verify-recaptcha', async (req, res) => {
             res.status(400).send({ success: false, error: 'Invalid reCAPTCHA token' });
         }
     } catch (error) {
+        console.error("Error in /verify-recaptcha:", error);
         res.status(500).send({ success: false, error: error.message });
     }
 });
