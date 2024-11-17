@@ -8,7 +8,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Enable CORS for your frontend domain
-app.use(cors({ origin: 'https://www.karacrown.com', methods: ['POST'] }));
+app.use(cors({
+    origin: 'https://www.karacrown.com', // Replace with your actual domain
+    methods: ['GET', 'POST'], // Specify allowed methods
+    allowedHeaders: ['Content-Type'] // Specify allowed headers
+}));
 
 app.use(bodyParser.json());
 
