@@ -8,44 +8,44 @@ body {
 }
 
 header {
-    background-color: #003366;
+    background: linear-gradient(135deg, #002b55, #00509e); /* Gradient transition from navy to soft blue */
     color: #fff;
     padding: 20px;
 }
 
 .header-container {
     display: flex;
-    align-items: center; /* Align items vertically */
-    justify-content: space-between; /* Spread logo and text apart */
-    padding: 0 20px; /* Add padding on the sides */
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
 }
 
 .logo {
-    width: 225px; /* Logo size increased to 1.5 times */
+    width: 225px; 
     height: auto;
-    margin-right: 20px; /* Space between logo and header text */
+    margin-right: 20px;
 }
 
 .header-text {
-    text-align: left; /* Align text to the left */
-    flex-grow: 1; /* Allow text to take up the remaining space */
-    margin-left: -40px; /* Shift text slightly to the left */
+    text-align: left;
+    flex-grow: 1;
+    margin-left: -40px;
 }
 
 .header-text h1 {
-    font-size: 3.75em; /* Font size remains the same */
+    font-size: 3.75em;
     margin: 0;
 }
 
 .header-text p {
-    font-size: 2.25em; /* Font size remains the same */
+    font-size: 2.25em;
     margin: 5px 0 15px;
 }
 
 nav {
     display: flex;
     justify-content: center;
-    background-color: #00509e;
+    background-color: #00509e; /* Slightly lighter blue for the nav bar */
 }
 
 nav a {
@@ -56,23 +56,23 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #003366;
+    background-color: #003366; /* Darker blue for hover effect */
 }
 
 .hero {
     text-align: center;
-    background-color: #e0f7ff;
+    background-color: #e0f7ff; /* Light blue background for contrast */
     padding: 50px 20px;
 }
 
 .hero h2 {
-    font-size: 3em; /* Font size remains the same */
+    font-size: 3em;
     color: #00509e;
     margin: 0;
 }
 
 .hero p {
-    font-size: 1.5em; /* Font size remains the same */
+    font-size: 1.5em;
     margin: 10px 0 20px;
 }
 
