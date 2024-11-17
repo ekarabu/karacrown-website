@@ -6,6 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - KaraCrown LLC</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Add this style to center the container */
+        .container {
+            max-width: 800px; /* Adjust the max-width as needed */
+            margin: 0 auto; /* Center the container horizontally */
+            padding: 20px;
+        }
+    </style>
+    <script>
+        // Function to generate and display a random math captcha
+        function generateCaptcha() {
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            document.getElementById('captcha-question').innerText = `What is ${num1} + ${num2}?`;
+            return num1 + num2;
+        }
+
+        // Initialize the correct captcha answer
+        let captchaAnswer;
+
+        // Function to validate the captcha
+        function validateCaptcha(event) {
+            event.preventDefault(); // Prevent form submission
+            const captchaInput = document.getElementById('captcha').value;
+            if (parseInt(captchaInput) === captchaAnswer) {
+                document.getElementById('contact-form').submit(); // Submit the form if correct
+            } else {
+                alert("Incorrect captcha. Please try again.");
+                captchaAnswer = generateCaptcha(); // Generate a new captcha question
+            }
+        }
+
+        // Set up the captcha when the page loads
+        window.onload = function() {
+            captchaAnswer = generateCaptcha();
+        };
+    </script>
 </head>
 <body>
     <header>
@@ -19,16 +56,31 @@
     <div class="container">
         <h2>Get in Touch</h2>
         <p>We’d love to hear from you! Reach out with any questions or investment opportunities.</p>
-        <form id="contact-form" action="mailto:info@karacrown.com" method="post" enctype="text/plain">
+        <form id="contact-form" action="https://formspree.io/f/xnnqzqyn" method="POST" onsubmit="validateCaptcha(event)">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br><br>
-            <label for="email">Email:</label>
+
+            <label for="email">Your Email:</label>
             <input type="email" id="email" name="email" required><br><br>
-            <label for="message">Message:</label><br>
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required><br><br>
+
+            <label for="message">Your Message:</label><br>
             <textarea id="message" name="message" rows="4" required></textarea><br><br>
-            <input type="submit" value="Send">
+
+            <!-- Dynamic Captcha -->
+            <label id="captcha-question"></label><br>
+            <input type="text" id="captcha" name="captcha" required><br><br>
+
+            <button type="submit">Send</button>
         </form>
         <p id="status-message" style="color: green;"></p>
+        
+        <!-- Additional Note -->
+        <p style="font-size: 0.9em; color: gray; margin-top: 10px;">
+            Note: Your email will be sent to our info address, and we will get back to you as soon as possible.
+        </p>
     </div>
     <footer>
         <p>© 2024 KaraCrown LLC. All rights reserved.</p>
