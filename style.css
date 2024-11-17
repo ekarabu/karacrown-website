@@ -6,40 +6,63 @@ body {
     color: #333;
     line-height: 1.6;
 }
+
 header {
     background-color: #003366;
     color: #fff;
     padding: 20px;
-    text-align: center;
 }
+
+.header-container {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    padding: 10px 20px; /* Adjust padding if needed */
+}
+
+.logo {
+    width: 100px; /* Adjust to maintain proportion */
+    height: auto;
+    margin-right: 20px; /* Space between logo and header text */
+}
+
+.header-text {
+    text-align: left;
+}
+
 nav {
     display: flex;
     justify-content: center;
     background-color: #00509e;
 }
+
 nav a {
     color: #fff;
     padding: 15px 20px;
     text-decoration: none;
     font-weight: bold;
 }
+
 nav a:hover {
     background-color: #003366;
 }
+
 .hero {
     text-align: center;
     background-color: #e0f7ff;
     padding: 50px 20px;
 }
+
 .hero h2 {
     margin: 0;
     font-size: 2.5em;
     color: #00509e;
 }
+
 .hero p {
     font-size: 1.2em;
     margin: 10px 0 20px;
 }
+
 .cta-button {
     display: inline-block;
     background-color: #00509e;
@@ -49,14 +72,17 @@ nav a:hover {
     font-weight: bold;
     border-radius: 5px;
 }
+
 .cta-button:hover {
     background-color: #003366;
 }
+
 .features {
     display: flex;
     justify-content: space-around;
     padding: 20px;
 }
+
 .feature {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -65,6 +91,7 @@ nav a:hover {
     width: 30%;
     text-align: center;
 }
+
 footer {
     text-align: center;
     padding: 15px;
@@ -74,7 +101,6 @@ footer {
     bottom: 0;
     width: 100%;
 }
-
 
 /* Rentals Page Styles */
 .rentals-container {
@@ -119,12 +145,3 @@ footer {
     margin: 5px 0;
     color: #666;
 }
-
-.logo {
-    width: 150px; /* Adjust the size as needed */
-    height: auto;
-    display: block;
-    margin: 0 auto; /* Center the logo if desired */
-}
-
-
