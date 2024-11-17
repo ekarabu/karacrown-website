@@ -9,6 +9,7 @@
   "author": "Emre",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^8.1.4",
     "axios": "^1.7.7",
     "body-parser": "^1.20.3",
     "dotenv": "^10.0.0",
