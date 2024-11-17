@@ -11,20 +11,24 @@ header {
     background-color: #003366;
     color: #fff;
     padding: 20px;
-    text-align: center; /* Center all header content */
 }
 
 .header-container {
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Center the text vertically */
-    padding: 10px 20px;
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Spread logo and text apart */
+    padding: 0 20px; /* Add padding on the sides */
 }
 
 .logo {
     width: 100px; /* Adjust to maintain proportion */
     height: auto;
-    margin-bottom: 10px; /* Space below the logo */
+    margin-right: 20px; /* Space between logo and header text */
+}
+
+.header-text {
+    text-align: center; /* Center the text */
+    flex-grow: 1; /* Allow text to take up the remaining space */
 }
 
 .header-text h1 {
