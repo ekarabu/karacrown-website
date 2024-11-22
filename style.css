@@ -5,6 +5,9 @@ body {
     background-color: #f8f8f8;
     color: #333;
     line-height: 1.6;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding-bottom: 100px;
 }
 
 header {
@@ -32,6 +35,18 @@ header {
     width: 12vw;
 }
 
+.navbar-logo {
+    height: 80px;
+    width: 80px;
+    margin: 0 0 -10px 10px;
+}
+
+.navbar-main {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
 .header-text {
     flex: 2;
     text-align: center; /* Center the text */
@@ -49,8 +64,10 @@ header {
 
 nav {
     display: flex;
-    justify-content: center;
+    align-items: center;
     background-color: #00509e; /* Slightly lighter blue for the nav bar */
+    color: #fff;
+    padding: 0 10px;
 }
 
 nav a {
@@ -115,16 +132,22 @@ footer {
     padding: 15px;
     background-color: #003366;
     color: #fff;
-    position: relative;
-    bottom: 0;
     width: 100%;
+    bottom: 0;
+    position: fixed;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 /* Rentals Page Styles */
 .rentals-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     padding: 20px;
     background-color: #f8f8f8;
 }
